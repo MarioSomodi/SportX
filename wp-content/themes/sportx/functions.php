@@ -716,6 +716,11 @@ function insert_specific_post($postTitle, $postName, $postType)
     }
 }
 
+if (!wp_next_scheduled('update_countries_list')) {
+    wp_schedule_event(time(), 'daily', 'insert_countries_in_wp');
+}
+add_action('wp_ajax_nopriv_insert_countries_in_wp', 'insert_countries_in_wp');
+add_action('wp_ajax_insert_countries_in_wp', 'insert_countries_in_wp');
 function insert_countries_in_wp()
 {
     $countries = json_decode(call_api('countries', ''));
@@ -733,8 +738,11 @@ function insert_countries_in_wp()
     }
 }
 
-// add_action('init', 'insert_countries_in_wp', 1);
-
+if (!wp_next_scheduled('update_venues_list')) {
+    wp_schedule_event(time(), 'daily', 'insert_venues_in_wp');
+}
+add_action('wp_ajax_nopriv_insert_venues_in_wp', 'insert_venues_in_wp');
+add_action('wp_ajax_insert_venues_in_wp', 'insert_venues_in_wp');
 function insert_venues_in_wp($country)
 {
     if ($country == null) $country = 'Croatia';
@@ -785,8 +793,11 @@ function insert_venues_in_wp($country)
     }
 }
 
-// add_action('init', 'insert_venues_in_wp', 0);
-
+if (!wp_next_scheduled('update_teams_list')) {
+    wp_schedule_event(time(), 'daily', 'insert_teams_in_wp');
+}
+add_action('wp_ajax_nopriv_insert_teams_in_wp', 'insert_teams_in_wp');
+add_action('wp_ajax_insert_teams_in_wp', 'insert_teams_in_wp');
 function insert_teams_in_wp($country)
 {
     if ($country == null) $country = 'Croatia';
@@ -843,8 +854,11 @@ function insert_teams_in_wp($country)
     }
 }
 
-// add_action('init', 'insert_teams_in_wp', 0);
-
+if (!wp_next_scheduled('update_leagues_list')) {
+    wp_schedule_event(time(), 'daily', 'insert_leagues_in_wp');
+}
+add_action('wp_ajax_nopriv_insert_leagues_in_wp', 'insert_leagues_in_wp');
+add_action('wp_ajax_insert_leagues_in_wp', 'insert_leagues_in_wp');
 function insert_leagues_in_wp($country)
 {
     if ($country == null) $country = 'Croatia';
@@ -902,8 +916,11 @@ function insert_leagues_in_wp($country)
     }
 }
 
-// add_action('init', 'insert_leagues_in_wp', 0);
-
+if (!wp_next_scheduled('update_fixtures_list')) {
+    wp_schedule_event(time(), 'daily', 'insert_fixtures_in_wp');
+}
+add_action('wp_ajax_nopriv_insert_fixtures_in_wp', 'insert_fixtures_in_wp');
+add_action('wp_ajax_insert_fixtures_in_wp', 'insert_fixtures_in_wp');
 function insert_fixtures_in_wp()
 {
     $leagues = get_posts([
@@ -1034,5 +1051,3 @@ function insert_fixtures_in_wp()
         }
     }
 }
-
-// add_action('init', 'insert_fixtures_in_wp', 0);
