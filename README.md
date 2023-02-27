@@ -2,7 +2,7 @@
 ## Setup
 You have to setup a MYSQL database with the SQL for that provided in the root directory, also change DB_HOST in wp-config.php if needed.
 After that you are ready to go.
-## Description of the project
+## Project description
 This is a wordpress website that uses a REST API to collect football teams, fixtures, venues, leauges and connects it all in a modern interface for viewing. It has filtering options to find what you are looking for.
 ## Technologies used
 * Wordpress
